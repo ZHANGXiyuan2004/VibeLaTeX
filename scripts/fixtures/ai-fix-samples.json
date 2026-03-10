@@ -1,0 +1,92 @@
+[
+  {
+    "id": "frac_missing_brace",
+    "title": "Fraction missing closing brace",
+    "latex": "\\frac{a+b}{c+d",
+    "error_message": "ParseError: Expected '}', got EOF.",
+    "expected_contains": ["\\frac{a+b}{c+d}"],
+    "forbidden_contains": ["<think>", "```"],
+    "mock_fixed_latex": "\\frac{a+b}{c+d}"
+  },
+  {
+    "id": "aligned_missing_end",
+    "title": "Aligned env missing end",
+    "latex": "\\begin{aligned}a&=b\\\\c&=d",
+    "error_message": "ParseError: Missing \\end{aligned}.",
+    "expected_contains": ["\\begin{aligned}", "\\end{aligned}"],
+    "forbidden_contains": ["<think>", "```"],
+    "mock_fixed_latex": "\\begin{aligned}a&=b\\\\c&=d\\end{aligned}"
+  },
+  {
+    "id": "cases_missing_end_brace",
+    "title": "Cases env malformed ending",
+    "latex": "f(x)=\\begin{cases}x^2,&x\\ge0\\\\-x,&x<0\\end{cases",
+    "error_message": "ParseError: Missing closing brace for environment.",
+    "expected_contains": ["\\begin{cases}", "\\end{cases}"],
+    "forbidden_contains": ["<think>", "```"],
+    "mock_fixed_latex": "f(x)=\\begin{cases}x^2,&x\\ge0\\\\-x,&x<0\\end{cases}"
+  },
+  {
+    "id": "sqrt_missing_brace",
+    "title": "Sqrt command missing brace",
+    "latex": "\\sqrt{x+1",
+    "error_message": "ParseError: Expected '}', got EOF.",
+    "expected_contains": ["\\sqrt{x+1}"],
+    "forbidden_contains": ["<think>", "```"],
+    "mock_fixed_latex": "\\sqrt{x+1}"
+  },
+  {
+    "id": "left_right_unbalanced",
+    "title": "Left-right delimiter unbalanced",
+    "latex": "\\left(\\frac{a}{b}",
+    "error_message": "ParseError: Missing \\right delimiter.",
+    "expected_contains": ["\\left(", "\\right)"],
+    "forbidden_contains": ["<think>", "```"],
+    "mock_fixed_latex": "\\left(\\frac{a}{b}\\right)"
+  },
+  {
+    "id": "matrix_missing_end",
+    "title": "Matrix env missing end",
+    "latex": "\\begin{bmatrix}a&b\\\\c&d",
+    "error_message": "ParseError: Missing \\end{bmatrix}.",
+    "expected_contains": ["\\begin{bmatrix}", "\\end{bmatrix}"],
+    "forbidden_contains": ["<think>", "```"],
+    "mock_fixed_latex": "\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}"
+  },
+  {
+    "id": "subscript_braces",
+    "title": "Subscript normalization",
+    "latex": "x_12+y_3",
+    "error_message": "ParseError: Double subscript.",
+    "expected_contains": ["x_{12}", "y_{3}"],
+    "forbidden_contains": ["<think>", "```"],
+    "mock_fixed_latex": "x_{12}+y_{3}"
+  },
+  {
+    "id": "overset_missing_group",
+    "title": "Overset missing grouped arguments",
+    "latex": "\\overset a b",
+    "error_message": "ParseError: Expected grouped arguments for \\overset.",
+    "expected_contains": ["\\overset{a}{b}"],
+    "forbidden_contains": ["<think>", "```"],
+    "mock_fixed_latex": "\\overset{a}{b}"
+  },
+  {
+    "id": "sum_limit_grouping",
+    "title": "Summation limits malformed",
+    "latex": "\\sum_i=1^n i",
+    "error_message": "ParseError: Unexpected token after \\sum.",
+    "expected_contains": ["\\sum_{i=1}^{n} i"],
+    "forbidden_contains": ["<think>", "```"],
+    "mock_fixed_latex": "\\sum_{i=1}^{n} i"
+  },
+  {
+    "id": "env_mismatch",
+    "title": "Environment begin/end mismatch",
+    "latex": "\\begin{equation}E=mc^2\\end{align}",
+    "error_message": "ParseError: Environment mismatch.",
+    "expected_contains": ["\\begin{equation}", "\\end{equation}"],
+    "forbidden_contains": ["<think>", "```"],
+    "mock_fixed_latex": "\\begin{equation}E=mc^2\\end{equation}"
+  }
+]

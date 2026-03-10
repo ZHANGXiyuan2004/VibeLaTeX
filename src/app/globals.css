@@ -1,0 +1,213 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+:root {
+  --background: #020617;
+  --foreground: #e2e8f0;
+  --card: #0f172a;
+  --card-foreground: #e2e8f0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --font-sans: var(--font-display-sans);
+  --font-mono: var(--font-app-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-display-sans), sans-serif;
+}
+
+:root[data-theme="light"] {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  --color-slate-50: #0f172a;
+  --color-slate-100: #1e293b;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #64748b;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #cbd5e1;
+  --color-slate-700: #dbe5f0;
+  --color-slate-800: #e2e8f0;
+  --color-slate-900: #f1f5f9;
+  --color-slate-950: #f8fafc;
+}
+
+code,
+pre,
+textarea,
+input {
+  font-family: var(--font-app-mono), monospace;
+}
+
+.checkerboard-bg {
+  background-color: #111827;
+  background-image:
+    linear-gradient(45deg, #1f2937 25%, transparent 25%),
+    linear-gradient(-45deg, #1f2937 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #1f2937 75%),
+    linear-gradient(-45deg, transparent 75%, #1f2937 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+}
+
+:root[data-theme="light"] .checkerboard-bg {
+  background-color: #f1f5f9;
+  background-image:
+    linear-gradient(45deg, #e2e8f0 25%, transparent 25%),
+    linear-gradient(-45deg, #e2e8f0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e2e8f0 75%),
+    linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+}
+
+.admin-page-bg {
+  background-image: radial-gradient(ellipse at top, #133454 0%, #020617 50%);
+}
+
+.admin-login-bg {
+  background-image: radial-gradient(circle at top, #10243a 0%, #020617 55%);
+}
+
+:root[data-theme="light"] .admin-page-bg {
+  background-image: radial-gradient(ellipse at top, #dbeafe 0%, #f8fafc 50%);
+}
+
+:root[data-theme="light"] .admin-login-bg {
+  background-image: radial-gradient(circle at top, #dbeafe 0%, #f8fafc 55%);
+}
+
+.latex-error-decoration {
+  border-bottom: 2px solid #f43f5e;
+  background: rgba(244, 63, 94, 0.2);
+}
+
+.latex-error-glyph {
+  background: #f43f5e;
+  width: 6px !important;
+  border-radius: 999px;
+}
+
+.vibelatex-preview-scroll {
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+}
+
+.resizable-panel {
+  position: relative;
+}
+
+.resizable-panel-grip {
+  position: absolute;
+  right: 8px;
+  bottom: 6px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 14px;
+  border: 0;
+  border-radius: 8px;
+  padding: 0;
+  background: transparent;
+  color: rgba(52, 211, 153, 0.68);
+  opacity: 0.82;
+  cursor: ns-resize;
+  transition: opacity 140ms ease, color 140ms ease, filter 140ms ease, background-color 140ms ease;
+}
+
+.resizable-panel-grip-lines {
+  position: relative;
+  width: 12px;
+  height: 8px;
+  pointer-events: none;
+}
+
+.resizable-panel-grip-lines::before,
+.resizable-panel-grip-lines::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 12px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.resizable-panel-grip-lines::before {
+  top: 1px;
+}
+
+.resizable-panel-grip-lines::after {
+  bottom: 1px;
+}
+
+.resizable-panel-grip:hover,
+.resizable-panel-grip:focus-visible,
+.resizable-panel--dragging .resizable-panel-grip {
+  opacity: 1;
+  color: rgba(52, 211, 153, 0.96);
+  background-color: rgba(15, 23, 42, 0.55);
+  filter: drop-shadow(0 0 4px rgba(52, 211, 153, 0.35));
+}
+
+.resizable-panel-grip:focus-visible {
+  outline: 1px solid rgba(52, 211, 153, 0.8);
+  outline-offset: 1px;
+}
+
+.vibelatex-formula-content .katex-display {
+  margin: 0;
+  padding: 2px 0;
+  overflow: visible;
+}
+
+.vibelatex-formula-content mjx-container[display="true"] {
+  margin: 0 !important;
+  overflow: visible;
+}
+
+.pdf-beta-badge {
+  border-color: rgba(245, 158, 11, 0.6);
+  background: rgba(245, 158, 11, 0.2);
+  color: #fde68a;
+}
+
+:root[data-theme="light"] .pdf-beta-badge {
+  border-color: #b45309;
+  background: #fef3c7;
+  color: #7c2d12;
+}
+
+.vibelatex-export-status {
+  margin: 0;
+  max-width: 100%;
+  border-radius: 6px;
+  border: 1px solid rgba(51, 65, 85, 0.55);
+  background: rgba(15, 23, 42, 0.45);
+  padding: 2px 8px;
+  color: #cbd5e1;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+:root[data-theme="light"] .vibelatex-export-status {
+  border-color: rgba(148, 163, 184, 0.85);
+  background: rgba(241, 245, 249, 0.95);
+  color: #334155;
+}
